@@ -5,8 +5,11 @@ class ConfigParser:
         self.config_text = config_text
 
     def get_hostname(self):
-        return re.findall(r"hostname (\S+)", self.config_text)
-        
+        match = re.findall(r"hostname (\S+)", self.config_text)
+        if match == []:
+            return [" "]
+        else:
+            return match
     
     def get_interface(self):
         
@@ -14,4 +17,5 @@ class ConfigParser:
 
     def get_ospf(self):
 
-        return re.findall(r"router ospf (\S+)",self.config_text)
+        match = re.findall(r"router ospf (\S+)",self.config_text)
+        return match
