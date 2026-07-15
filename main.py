@@ -1,30 +1,20 @@
 from utils.file_reader import FileReader
 from parser.config_parser import ConfigParser
 from validators.hostname_validation import HostnameValidator
-from validators.interface_validator import InterfaceValidator
+from validators.interface_validator import Interfacevalidator
+
 
 reader = FileReader("configs/R1.txt")
 config = reader.read_config()
 parser = ConfigParser(config)
-hostname = parser.get_hostname()
-interface = parser.get_interface()
-ospf = parser.get_ospf()
-validate_hostname = HostnameValidator(hostname)
-print(hostname)
-hostname_validation = validate_hostname.validate_hostname()
-validate_interface = InterfaceValidator()
-interface_validation = validate_interface.validate(config)
+extracted_details = parser.paser()
+#print(extracted_details)
 
-print("\n========== Interface Validation Report ==========")
+#Hostname validation.
+hostname = HostnameValidator(extracted_details["Host Name"])
+hostname_status = hostname.validate_hostname()
+print(hostname_status)
 
-for result in interface_validation:
-    print(f"\nInterface : {result['interface']}")
-    print(f"Status    : {result['status']}")
-    print(f"Ip address : {result['ip address']}")
-
-    if result["errors"]:
-        print("Errors:")
-        for error in result["errors"]:
-            print(f"  - {error}")
-    else:
-        print("Errors    : None")
+#Interface validation.
+interface = Interfacevalidator(extracted_details["Interfaces"])
+inteface_status = interface.validate_interface()

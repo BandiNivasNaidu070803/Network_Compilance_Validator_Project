@@ -4,11 +4,11 @@ class HostnameValidator:
 
     def validate_hostname(self):
         if self.hostname[0] == " ":
-            print("Host Name Unavailable")
+            return "Host Name Unavailable"
             
         else:
             if self.hostname[0][0] == "R" :
-                print("Host Name is valid")
+                return "Host Name is valid"
             else:
-                print("Host Name should start with 'R'")
+                return "Host Name should start with 'R'"
         
