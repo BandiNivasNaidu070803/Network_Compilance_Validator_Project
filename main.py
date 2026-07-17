@@ -3,12 +3,13 @@ from parser.config_parser import ConfigParser
 from validators.hostname_validation import HostnameValidator
 from validators.interface_validator import Interfacevalidator
 from validators.ipaddress_validation import IPAddressvalidation
+from validators.ospf_validation import OSPFValidation
 
 reader = FileReader("configs/R1.txt")
 config = reader.read_config()
 parser = ConfigParser(config)
 extracted_details = parser.paser()
-#print(extracted_details)
+
 
 
 #Hostname validation.
@@ -35,14 +36,29 @@ else:
 
 
 #IP Address validation.
-
-ip_address = IPAddressvalidation(extracted_details["Interfaces"])
-ip_address_status = ip_address.validate_ipaddress()
-print(ip_address_status)
-if ip_address_status == None:
-    ip_address_result = "PASS"
+ip_address_result = ""
+if extracted_details["Interfaces"] == []:
+    ip_address_result = "FAIL No ip address"
 else:
-    ip_address_result = "FAIL " + ip_address_status
+    ip_address = IPAddressvalidation(extracted_details["Interfaces"])
+    ip_address_status = ip_address.validate_ipaddress()
+    print(ip_address_status)
+    if ip_address_status == "":
+        ip_address_result = "PASS"
+    else:
+        ip_address_result = "FAIL " + ip_address_status
+
+#OSPF validation.
+ospf = OSPFValidation(extracted_details["OSPF"])
+ospf_status = ospf.validate_ospf()
+print(ospf_status)
+if ospf_status == "":
+    ospf_result = "PASS"
+else:
+    ospf_result = "FAIL " + ospf_status
+
+
+
 
 
 print("============================================================================\n")
@@ -53,4 +69,5 @@ print("\n")
 print(" Hostname Validation     :   ",hostname_result)
 print(" Interface Validation    :   ",interface_result)
 print(" IP Address validation   :   ",ip_address_result)
+print(" OSPF validation         :   ",ospf_result)
 

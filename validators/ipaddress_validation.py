@@ -12,5 +12,5 @@ class IPAddressvalidation:
             if extract_ip_address ==  None:
                 result = result + self.interfaces[i]["IP Address"] + " Incorrect IP address. "
             else:
-                result = None
+                result = result
         return result 
