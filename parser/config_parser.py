@@ -40,13 +40,15 @@ class ConfigParser:
                 shutdown = None
     
             #Adding elements to the block
+
             interface_block = {
                 "Name" : name,
                 "IP Address" : ip,
                 "Link Status" : shutdown
             }
-        #Insert block into extracted_details.   
-            extracted_details["Interfaces"].append(interface_block)
+        #Insert block into extracted_details only which are having ip address.   
+            if interface_block["IP Address"]:
+                extracted_details["Interfaces"].append(interface_block)
 
         #Extract OSPF.
         processor_id = re.search(r"router ospf (\S+)", self.config_text, re.MULTILINE)

@@ -4,8 +4,33 @@ class Interfacevalidator:
     def __init__(self, interfaces):
         self.interfaces = interfaces
     #validation of interface.
+    
     def validate_interface(self):
-        for interface in self.interfaces:
-            re.findall(r"interface ")
+        #print(self.interfaces)
+        
+        #print(len(self.interfaces))
+        result = ""
+        for i in range(0,len(self.interfaces)):
+            #To Validate interface name.
+            if self.interfaces[i]["Name"]:
+                result = result
+            else:
+                result = result + self.interfaces[i]["Name"] + " Interface name not found. "
+            #To validate Link Status.
+            
+            if self.interfaces[i]["Link Status"] ==  None:
+                result = result
+            elif self.interfaces[i]["Link Status"] ==  "shutdown":
+                result = result + self.interfaces[i]["Name"] + " Link Status is DOWN. "
             
 
+        if result == "":
+            return None
+        else:
+            return result
+            
+
+                
+                        
+        
+    
