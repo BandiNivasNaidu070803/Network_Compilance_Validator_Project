@@ -1,0 +1,18 @@
+## Features
+
+- Parse Cisco router configuration files
+- Validate router hostname
+- Validate interface configuration
+- Validate IP address configuration
+- Validate OSPF configuration
+- Generate a network compliance report
+- Calculate overall compliance status
+
+## Technologies Used
+
+- Python 3
+- Regular Expressions (Regex)
+- Pytest
+- Cisco Packet Tracer
+- Git
+- GitHub

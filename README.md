@@ -11,6 +11,13 @@ extracted_details ={
             }
         }
 
+#Interface Extracted details format.
+interface_block = {
+                "Name" : name,
+                "IP Address" : ip,
+                "Link Status" : shutdown
+            }
+
 # Final output.
 
 ==========================================
@@ -23,7 +30,6 @@ Hostname Validation       : PASS
 Interface Validation      : PASS
 IP Validation             : PASS
 OSPF Validation           : PASS
-Duplicate IP Validation   : PASS
 
 Overall Status            : PASS
 Compliance Score          : 100%
@@ -37,8 +43,7 @@ Interface Validation      : FAIL
 
 IP Validation             : PASS
 OSPF Validation           : PASS
-Duplicate IP Validation   : PASS
 
 Overall Status            : FAIL
-Compliance Score          : 80%
+Compliance Score          : 75%
 ------------------------------------------

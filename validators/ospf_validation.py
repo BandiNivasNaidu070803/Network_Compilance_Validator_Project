@@ -10,7 +10,7 @@ class OSPFValidation:
         result = ""
         if self.ospf["process_id"] == None :
             result = result + " Poccess id Missing"
-        else:
+        elif type(self.ospf["process_id"]) == int:
             result = result
         for i in range(0, len(self.ospf["Networks"])):
             extract_network_id = re.search(r"\b(?:(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\b",self.ospf["Networks"][i].split(" ")[0])

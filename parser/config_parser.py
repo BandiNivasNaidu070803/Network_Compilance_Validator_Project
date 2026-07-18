@@ -4,7 +4,7 @@ import re
 class ConfigParser:
     def __init__(self, config_text):
         self.config_text = config_text
-    def paser(self):
+    def parser(self):
         
         extracted_details ={
             "Host Name" : None,
@@ -46,7 +46,7 @@ class ConfigParser:
                 "IP Address" : ip,
                 "Link Status" : shutdown
             }
-        #Insert block into extracted_details only which are having ip address.   
+            #Insert block into extracted_details only which are having ip address.   
             if interface_block["IP Address"]:
                 extracted_details["Interfaces"].append(interface_block)
 
